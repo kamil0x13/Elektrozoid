@@ -1,9 +1,9 @@
 const User = require('../../src/dbModels/user')
 
-const setupDatabase = async () => {
+const setupDatabaseUser = async () => {
     await User.deleteMany()
 }
 
 module.exports = {
-    setupDatabase
+    setupDatabaseUser
 }

@@ -1,13 +1,15 @@
 const request = require('supertest')
 const app = require('../src/app')
 const User = require('../src/dbModels/user')
-const { setupDatabase } = require('./fixtures/db')
+const { setupDatabaseUser } = require('./fixtures/db')
 
-beforeEach(setupDatabase)
+beforeEach(setupDatabaseUser)
 
 //Create user return 201 and check user and token exists
 test('Create user', async () => {
     const res = await request(app).post('/user').send({
+        name: 'Marcin',
+        lastName: 'Kowal',
         login: 'macrin',
         password: 'marcin123'
     }).expect(201)
@@ -20,6 +22,8 @@ test('Create user', async () => {
 //Create user and them logout
 test('Create and logout user', async () => {
     const res = await request(app).post('/user').send({
+        name: 'Marcin',
+        lastName: 'Kowal',
         login: 'macrin',
         password: 'marcin123'
     }).expect(201)
@@ -33,6 +37,8 @@ test('Create and logout user', async () => {
 //Create user and them logout and login back
 test('Create logout and login', async () => {
     const { body } = await request(app).post('/user').send({
+        name: 'Marcin',
+        lastName: 'Kowal',
         login: 'macrin',
         password: 'marcin123'
     }).expect(201)
@@ -51,6 +57,8 @@ test('Create logout and login', async () => {
 //Create user and delete them
 test('Create and delete', async () => {
     const { body } = await request(app).post('/user').send({
+        name: 'Marcin',
+        lastName: 'Kowal',
         login: 'macrin@ex.com',
         password: 'marcin123'
     }).expect(201)
