@@ -1,9 +1,9 @@
-const { JWT_SECRET } = require('../../config/dev')
+const { JWT_SECRET_ADMIN } = require('../../config/dev')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jsonwebtoken = require('jsonwebtoken')
 
-const userSchema = new mongoose.Schema({
+const adminSchema = new mongoose.Schema({
     login: {
         type: String,
         required: true,
@@ -25,28 +25,28 @@ const userSchema = new mongoose.Schema({
     }]
 })
 
-//Dodaje nowy token do usera i zwraca go w wyniku
-userSchema.methods.generateAuthToken = async function () {
-    const token = jsonwebtoken.sign({ _id: this._id.toString() }, JWT_SECRET)
+//Dodaje nowy token i zwraca go w wyniku
+adminSchema.methods.generateAuthToken = async function () {
+    const token = jsonwebtoken.sign({ _id: this._id.toString() }, JWT_SECRET_ADMIN)
     this.tokens = this.tokens.concat({ token })
     await this.save()
     return token
 }
 
-userSchema.methods.toJSON = function () {
-    const userObject = this.toObject()
+adminSchema.methods.toJSON = function () {
+    const adminObject = this.toObject()
 
-    delete userObject.password
-    delete userObject.tokens
+    delete adminObject.password
+    delete adminObject.tokens
 
-    return userObject
+    return adminObject
 }
 
 //Static
 
-//Szukanie usera po loginie
-userSchema.statics.findByLogin = async (login) => {
-    const user = await User.findOne({ login })
+//Szukanie po loginie
+adminSchema.statics.findByLogin = async (login) => {
+    const admin = await Admin.findOne({ login })
     if (!user) {
         throw new Error('Brak użytkownika w bazie!')
     }
@@ -54,26 +54,26 @@ userSchema.statics.findByLogin = async (login) => {
 }
 
 //Sprawdzanie logowania
-userSchema.statics.findByCredentials = async (login, password) => {
-    const user = await User.findOne({ login })
-    if (!user) {
+adminSchema.statics.findByCredentials = async (login, password) => {
+    const admin = await Admin.findOne({ login })
+    if (!admin) {
         throw new Error('Niepoprawne dane logowania!')
     }
-    const isMatch = await bcrypt.compare(password, user.password)
+    const isMatch = await bcrypt.compare(password, admin.password)
     if (!isMatch) {
         throw new Error('Niepoprawne dane logowania!')
     }
-    return user
+    return admin
 }
 
 //Hash hasło przed zapisaniem
-userSchema.pre('save', async function (next) {
+adminSchema.pre('save', async function (next) {
     if (this.isModified('password')) {
         this.password = await bcrypt.hash(this.password, 8)
     }
     next()
 })
 
-const User = mongoose.model('User', userSchema)
+const Admin = mongoose.model('Admin', adminSchema)
 
-module.exports = User
+module.exports = Admin
