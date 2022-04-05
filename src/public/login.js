@@ -40,3 +40,38 @@ registerUser = async ()=> {
     }
 }
 
+loginUser = async ()=> {
+    event.preventDefault();
+    const response = document.getElementById('Response')
+
+    const login = sigin.elements["login"].value;
+    const password = sigin.elements["password"].value;
+
+    const options = {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ login, password })
+    }
+
+    try {
+        let res = await fetch(`${API_URL}user/login`, options)
+
+        if (res.status === 200) {
+            res = await res.json()
+            localStorage.setItem('authenticated', true)
+            localStorage.setItem('userName', res.user.name)
+            localStorage.setItem('userLastName', res.user.lastName)
+            localStorage.setItem('token', res.token)
+            response.innerHTML = 'Zalogowano <br>userName ' + res.user.name + '<br>userLastName ' + res.user.lastName
+        } else {
+            response.innerHTML = 'Złe dane!'
+        }
+    } catch (e) {
+        console.log(e)
+        response.innerHTML = 'Błąd serwera'
+    }
+}
+

@@ -8,16 +8,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form id="signup" onsubmit="registerUser()">
+    <form id="sigin" onsubmit="loginUser()">
         <div class="container">
-          <h1>Rejestracja</h1>
+          <h1>Logowanie</h1>
           <hr>
-      
-          <label for="name"><b>Imie</b></label>
-          <input type="text" placeholder="Wprowadż imie" name="name" required>
-      
-          <label for="lastName"><b>Nazwisko</b></label>
-          <input type="text" placeholder="Wprowadż nazwisko" name="lastName" required>
       
           <label for="login"><b>Login</b></label>
           <input type="text" placeholder="Wprowadż login" name="login" required>
@@ -26,11 +20,11 @@
           <input type="password" placeholder="Wprowadż hasło" name="password" required>
           <hr>
       
-          <button type="submit" class="registerbtn">Zarejestruj</button>
+          <button type="submit" class="registerbtn">zaloguj</button>
         </div>
       
         <div class="container signin">
-          <p>Posiadasz konto? <a href="login.html">Zaloguj się</a>.</p>
+          <p>Nie posiadasz konta? <a href="index.html">Zarejestruj się</a>.</p>
         </div>
       </form>
       <p id="Response"></p>
