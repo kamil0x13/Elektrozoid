@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 main().then(() => {
     console.log("Successfully connected to database");
   }).catch(err => console.log(err));

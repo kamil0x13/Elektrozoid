@@ -1,5 +1,6 @@
 const express = require('express')
 require('./db/mongoose')
+const path = require('path')
 
 var bodyParser = require('body-parser')
 
@@ -13,6 +14,7 @@ app.use(bodyParser.json())
 //Routers
 require('./routers/user')(app)
 
+app.use(express.static(path.join(__dirname, 'public')))
 
 process.title = 'Elektrozoid'
 
