@@ -21,6 +21,7 @@ registerUser = async ()=> {
         })
         const result = await res.json()
         if (result.code && result.code === 11000) {
+            response.innerHTML = 'Login nie dostępny!'
             //cb(11000)
         } else if (res.status === 201) {
             response.innerHTML = 'Utworzono urzytkownika: <br>Imie: ' + result.user.name + '<br>Nazwisko: '  + result.user.lastName + '<br>Token: ' + result.token
