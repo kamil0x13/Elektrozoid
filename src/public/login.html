@@ -1,33 +1,151 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elektrozoid</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <title>Elektrozoid | Zaloguj</title>
+    <link rel="icon" href="favicon.ico">
+    <link type="text/css" rel="stylesheet" href="styleCSS/styl_glowny.css">
+    <link type="text/css" rel="stylesheet" href="styleCSS/login.css">
+    <script src="https://kit.fontawesome.com/e9875672a8.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    
+    
 </head>
 <body>
-    <form id="sigin" onsubmit="loginUser()">
-        <div class="container">
-          <h1>Logowanie</h1>
-          <hr>
-      
-          <label for="login"><b>Login</b></label>
-          <input type="text" placeholder="Wprowadż login" name="login" required>
-          
-          <label for="password"><b>Hasło</b></label>
-          <input type="password" placeholder="Wprowadż hasło" name="password" required>
-          <hr>
-      
-          <button type="submit" class="registerbtn">zaloguj</button>
+    
+    <!--------------------------------------------------------------------------------------------->
+    
+    <div id="baner">
+        
+        <a href="login.html" title="Zaloguj"><i class="fas fa-sign-in-alt "><p>Zaloguj</p></i></a>
+        <a href="koszyk.html" title="Koszyk"><i class="fas fa-shopping-cart " ><p>Koszyk</p></i></a>
+        <a href="index.html" title="Strona główna"> <img src="Logo_dlugie.png" id="logo_banner" style="height: 100%;"></a>
+        
+    </div>
+     
+    </div>
+    
+
+    <!--------------------------------------------------------------------------------------------->
+
+    <div id="top">
+        <table>
+            <tr>
+                <td onclick="location.href='podzespoly.html'">Podzespoły   <i class="fas fa-caret-down"></i></td>
+                <td onclick="location.href='telefony.html'">Telefony    <i class="fas fa-caret-down"></i></td>
+                <td onclick="location.href='drukarki.html'">Drukarki    <i class="fas fa-caret-down"></i></td>
+            </tr>
+        
+        </table>
+    
+    </div>
+
+    <!--------------------------------------------------------------------------------------------->
+
+    <div id="main">
+        
+            <div id="form">
+                <form action="#" method="POST">
+                    <table>
+                        <tr>
+                            <td colspan="2">Zaloguj się</td>
+                        </tr>
+                        <tr><td></td></tr>
+                        <tr>
+                            <td> Login: </td> 
+                            <td><input type="email" id="email" class="email" placeholder="E-mail"></td>
+                        </tr>
+                        <tr><td></td></tr>
+                        <tr>
+                            <td> Hasło: </td> 
+                            <td><input type="password" id="password" class="password" placeholder="Hasło">
+                            <input type="checkbox" onclick="showLogPassword()"> Pokaż</td>
+                        </tr>
+                    </table>
+                    
+                    <button type="submit" id="submit" class="submit">Zaloguj</button><br><br>
+                    Nie masz jeszcze konta? <br><a href="rejestracja.html">Zarejestruj się</a>
+                    
+                </form>
+            </div>
+           
+<!---------------------------------------------------------------------------------------->
+            
+        
+    </div>  
+        
+    <!--------------------------------------------------------------------------------------------->
+
+    <div id="weAreGoingUp" onclick="topFunction()">
+        <i class="fas fa-arrow-circle-up fa-3x" title="Do góry"></i>
+    </div>
+    
+    <!--------------------------------------------------------------------------------------------->
+    
+    <div id="footer">
+        <hr>
+        <hr>
+        <div id="linki">
+            <a href="o_nas.html" title="O nas"><i class="fas fa-info "> O nas</i></a><br><br>
+            <a href="kontakt.html" title="Kontakt"><i class="fas fa-phone-square-alt "> Kontakt</i></a><br><br>
+
         </div>
-      
-        <div class="container signin">
-          <p>Nie posiadasz konta? <a href="index.html">Zarejestruj się</a>.</p>
-        </div>
-      </form>
-      <p id="Response"></p>
+        <h5>
+            <table>
+                <tr>
+                    <td><h2>Projekt witryny sklepu internetowego wykonali</h2></td>
+                </tr>
+                <tr>
+                    <td>Jan Pawłowski (Nr albumu: 37665) – lider, koordynator;</td>
+                </tr>
+                <tr>
+                    <td>Kamil Pietrzak (Nr albumu: 38096) – programista Backend;</td>
+                </tr>
+                <tr>
+                    <td>Mateusz Cieryt (Nr albumu: 37645) – programista Frontend;</td>
+                </tr>
+            </table>
+
+        </h5>
+
+    </div>
+    
 </body>
-<script src="login.js"></script>
 </html>
+
+<script>
+    function topFunction() {
+      
+      document.documentElement.scrollTop = 0;
+    }
+</script>
+
+<script>
+    var limitFunc = function () {
+        if (window.innerWidth <= 762) {
+            document.getElementById("logo_banner").src="Logo_male.png";
+        }
+        if (window.innerWidth > 762) {
+            document.getElementById("logo_banner").src="Logo_dlugie.png";
+        }
+    };
+
+    window.addEventListener("resize", limitFunc);
+    window.addEventListener("onload", limitFunc);    
+</script>
+
+<script>
+    function showLogPassword() {
+      var login = document.getElementById("password");
+    
+      if (login.type === "password") {
+        login.type = "text";
+      } else {
+        login.type = "password";
+      }
+    
+    } 
+        </script>
+    
+    <script>
+    

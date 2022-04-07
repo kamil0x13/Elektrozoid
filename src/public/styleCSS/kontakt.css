@@ -1,0 +1,37 @@
+#info{
+    margin-top: 4%;
+    font-size: large;
+    text-align: center;
+    float: left;
+    width: 49%;
+    margin-right: 2%;
+}
+
+#mailto{
+    margin-top: 4%;
+    font-size: large;
+    float: left;
+    width: 49%;
+}
+.mailtoEmail{
+    border-style: none;
+    height: 30px;
+    width: 100%;
+    box-shadow: 2px 2px 4px 2px grey;
+}
+#mailto textarea{
+    width: 100%;
+    height: 25vh;
+    border-style: none;
+    box-shadow: 2px 2px 4px 2px grey;
+}
+
+#mailto_btn{
+    margin-left: 90%;  
+}
+
+@media only screen and (max-width: 762px) {
+    #info, #mailto{
+        width: 100%;
+    }
+}

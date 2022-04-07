@@ -2,17 +2,17 @@
 <html lang="pl">
 <head>
     <meta charset="utf-8">
-    <title>Elektrozoid | Strona główna</title>
+    <title>Elektrozoid | Zaloguj</title>
     <link rel="icon" href="favicon.ico">
     <link type="text/css" rel="stylesheet" href="styleCSS/styl_glowny.css">
-    <link type="text/css" rel="stylesheet" href="styleCSS/index.css">
+    <link type="text/css" rel="stylesheet" href="styleCSS/login.css">
     <script src="https://kit.fontawesome.com/e9875672a8.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     
     
 </head>
 <body>
-
+    
     <!--------------------------------------------------------------------------------------------->
     
     <div id="baner">
@@ -22,41 +22,58 @@
         <a href="index.html" title="Strona główna"> <img src="Logo_dlugie.png" id="logo_banner" style="height: 100%;"></a>
         
     </div>
+     
+    </div>
     
 
     <!--------------------------------------------------------------------------------------------->
 
+    <div id="top">
+        <table>
+            <tr>
+                <td onclick="location.href='podzespoly.html'">Podzespoły   <i class="fas fa-caret-down"></i></td>
+                <td onclick="location.href='telefony.html'">Telefony    <i class="fas fa-caret-down"></i></td>
+                <td onclick="location.href='drukarki.html'">Drukarki    <i class="fas fa-caret-down"></i></td>
+            </tr>
+        
+        </table>
     
+    </div>
+
     <!--------------------------------------------------------------------------------------------->
 
     <div id="main">
-        <div id="mainContent">
+        
+            <div id="form">
+                <form action="#" method="POST">
+                    <table>
+                        <tr>
+                            <td colspan="2">Zarejestruj się</td>
+                        </tr>
+                        <tr><td></td></tr>
+                        <tr>
+                            <td> Login: </td> 
+                            <td><input type="email" id="email" class="email" placeholder="E-mail"></td>
+                        </tr>
+                        <tr><td></td></tr>
+                        <tr>
+                            <td> Hasło: </td> 
+                            <td><input type="password" id="password" class="password" placeholder="Hasło">
+                            <input type="checkbox" onclick="showLogPassword()"> Pokaż</td>
+                        </tr>
+                    </table>
+                    
+                    <button type="submit" id="submit" class="submit">Zaloguj</button><br><br>
+                    Masz już konto? <br><a href="login.html">Zaloguj się</a>
+                    
+                </form>
+            </div>
+           
+<!---------------------------------------------------------------------------------------->
             
-            <a href="podzespoly.html">
-                <div class="kafelki white_shadow_box" id="cdk">
-                    <div class="center"><i>Podzespoły</i></div>
-                    <img src="czesci.png">
-                </div>
-
-            </a>
-            
-            <a href="telefony.html">
-                <div class="kafelki white_shadow_box" id="sphone">
-                    <div class="center"><i>Telefony</i></div>
-                    <img src="smartphone.png">
-                </div>
-
-            </a>
-            
-            <a href="drukarki.html">
-                <div class="kafelki white_shadow_box" id="druk">
-                    <div class="center"><i>Drukarki</i></div>
-                    <img src="printer.png">
-                </div>
-            </a>
-        </div>
-    </div>
-
+        
+    </div>  
+        
     <!--------------------------------------------------------------------------------------------->
 
     <div id="weAreGoingUp" onclick="topFunction()">
@@ -66,7 +83,6 @@
     <!--------------------------------------------------------------------------------------------->
     
     <div id="footer">
-        
         <hr>
         <hr>
         <div id="linki">
@@ -117,3 +133,19 @@
     window.addEventListener("resize", limitFunc);
     window.addEventListener("onload", limitFunc);    
 </script>
+
+<script>
+    function showLogPassword() {
+      var login = document.getElementById("password");
+    
+      if (login.type === "password") {
+        login.type = "text";
+      } else {
+        login.type = "password";
+      }
+    
+    } 
+        </script>
+    
+    <script>
+    

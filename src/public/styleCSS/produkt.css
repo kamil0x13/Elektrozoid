@@ -1,0 +1,26 @@
+#mainContent img{
+    border: 1px solid black;
+    width: 80%;
+    height: 50%;
+}
+
+.dodajOdejmij{
+    height: 10%;
+    width: 10%;
+}
+
+#mainContent>table{
+    min-height: 100%;
+    width: 100%;
+    
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 1px gray;
+}
+
+#mainContent td{
+    height: 300px;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+}
+
