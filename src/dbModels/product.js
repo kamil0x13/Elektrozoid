@@ -5,6 +5,8 @@ const productSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
+        unique: true,
+        lowercase: true,
         trim: true
     },
     category: {
@@ -15,6 +17,7 @@ const productSchema = new mongoose.Schema({
     number: {
         type: Number,
         required: true,
+        min:0,
     },
     parameters: [{
         title: {
