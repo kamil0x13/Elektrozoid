@@ -38,10 +38,10 @@ adminSchema.methods.generateAuthToken = async function () {
 //Szukanie po loginie
 adminSchema.statics.findByLogin = async (login) => {
     const admin = await Admin.findOne({ login })
-    if (!user) {
+    if (!admin) {
         throw new Error('Brak użytkownika w bazie!')
     }
-    return user
+    return admin
 }
 
 //Sprawdzanie logowania
