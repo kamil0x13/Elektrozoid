@@ -6,5 +6,6 @@ const JWT_SECRET_ADMIN = 'SecretFroGit2'
 module.exports = {
     PORT,
     MONGODB_URL,
-    JWT_SECRET
+    JWT_SECRET,
+    JWT_SECRET_ADMIN
 }
