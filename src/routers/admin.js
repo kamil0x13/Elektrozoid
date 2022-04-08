@@ -22,8 +22,8 @@ module.exports = function(app){
     //Login admin | body: json {login,password} | return token}
     app.post('/admin/login', async (req, res) => {
         try {
-            await Admin.findByCredentials(req.body.login, req.body.password)
-            const token = await Admin.generateAuthToken()
+            const admin = await Admin.findByCredentials(req.body.login, req.body.password)
+            const token = await admin.generateAuthToken()
             res.send({ token })
         } catch (e) {
             res.status(400).send(e)
