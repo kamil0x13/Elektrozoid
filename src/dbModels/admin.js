@@ -33,15 +33,6 @@ adminSchema.methods.generateAuthToken = async function () {
     return token
 }
 
-adminSchema.methods.toJSON = function () {
-    const adminObject = this.toObject()
-
-    delete adminObject.password
-    delete adminObject.tokens
-
-    return adminObject
-}
-
 //Static
 
 //Szukanie po loginie

@@ -13,7 +13,6 @@ module.exports = function(app){
                 throw new Error()
             }
             req.token = token
-            req.admin = admin
             next()
         } catch (e) {
             res.status(401).send({ error: 'Please authenticate.' })
@@ -53,6 +52,17 @@ module.exports = function(app){
             req.admin['password'] = req.body.password
             req.admin.save()
             res.send()
+        } catch (e) {
+            res.status(400).send(e)
+        }
+    })
+
+    //Creating admin | body: json {login(unique),password(minlength: 7)}
+    app.post('/createAdmin', async (req, res) => {
+        const admin = new Admin(req.body)
+        try {
+            await admin.save()
+            res.status(201).send()
         } catch (e) {
             res.status(400).send(e)
         }

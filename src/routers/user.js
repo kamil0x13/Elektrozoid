@@ -2,7 +2,7 @@ module.exports = function(app){
     const User = require('../dbModels/user')
     const { auth } = require('../auth/auth')
 
-    //Creating user | body: json {login(unique),password(minlength: 7)} | return {user(_id, login), token}
+    //Creating user | body: json {login(unique),password(minlength: 7, name, lastName)} | return {user(_id, login), token}
     app.post('/user', async (req, res) => {
         const user = new User(req.body)
         try {

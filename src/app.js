@@ -13,8 +13,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 //Routers
 require('./routers/user')(app)
+require('./routers/admin')(app)
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'build')))
+
+app.get('/', function(req, res){
+    res.sendFile(path.join(__dirname, 'build', index.html))
+})
 
 process.title = 'Elektrozoid'
 
