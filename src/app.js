@@ -14,6 +14,7 @@ app.use(bodyParser.json())
 //Routers
 require('./routers/user')(app)
 require('./routers/admin')(app)
+require('./routers/product')(app)
 
 app.use(express.static(path.join(__dirname, 'build')))
 
