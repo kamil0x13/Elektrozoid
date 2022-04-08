@@ -29,4 +29,17 @@ module.exports = function(app){
             res.status(400).send()
         }
     })
+
+    app.delete('/products', adminAuth, async (req, res) => {
+        try {
+            const product = await Product.find({ _id: req.body._id })
+            if (!product) {
+                res.status(404).send()
+            }
+            await product.remove()
+            res.send()
+        } catch (e) {
+            res.status(500).send()
+        }
+    })
 }
