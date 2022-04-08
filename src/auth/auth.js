@@ -2,6 +2,7 @@ const { JWT_SECRET } = require('../../config/dev')
 const { JWT_SECRET_ADMIN } = require('../../config/dev')
 const jwt = require('jsonwebtoken')
 const User = require('../dbModels/user')
+const Admin = require('../dbModels/admin')
 
 const auth = async (req, res, next) => {
     try {

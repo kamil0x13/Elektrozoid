@@ -6,12 +6,12 @@ module.exports = function(app){
     app.get('/products', async (req, res) => {
         try {
             let products = null;
-            if(res.body.category){
+            if(req.body.category){
                 products = await Product.findByCategory(req.body.category)
             }else{
                 products = await Product.find({})
             }
-            res.send()
+            res.send(products)
         } catch (e) {
             res.status(500).send()
         }
