@@ -4,7 +4,7 @@ module.exports = function(app){
     const { adminAuth }  = require('../auth/auth')
     
     //Get all category products |  body: json {category} return (category(_id, name, number, fields))
-    router.get('/products', async (req, res) => {
+    app.get('/products', async (req, res) => {
         try {
             let products = null;
             if(res.body.category){
@@ -19,7 +19,7 @@ module.exports = function(app){
     })
 
     //Create product
-    router.post('/equipment', adminAuth, async (req, res) => {
+    app.post('/equipment', adminAuth, async (req, res) => {
         const product = new Product({
             ...req.body
         })
