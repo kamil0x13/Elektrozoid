@@ -16,6 +16,7 @@ require('./routers/user')(app)
 require('./routers/admin')(app)
 require('./routers/product')(app)
 
+app.use('/uploads', express.static('uploads'))
 app.use(express.static(path.join(__dirname, 'build')))
 
 app.get('/', function(req, res){
