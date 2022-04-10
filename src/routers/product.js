@@ -46,15 +46,18 @@ module.exports = function(app){
 
     //Create product
     app.post('/products', adminAuth, upload.single('productImage'), async (req, res) => {
-        console.log(req.file)
-        const product = new Product({
-            ...req.body,
-            productImage: req.file.path
-        })
         try {
+            const product = new Product({
+                name: req.body.name,
+                category: req.body.category,
+                number: JSON.parse(req.body.number),
+                parameters: req.body.parameters ? JSON.parse(req.body.parameters) : undefined,
+                productImage: req.file.path
+            })
             await product.save()
             res.status(201).send(product)
         } catch (e) {
+            console.log(e)
             res.status(400).send()
         }
     })
