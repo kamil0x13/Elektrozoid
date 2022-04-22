@@ -5,8 +5,12 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        lowercase: true,
         trim: true
+    },
+    price:{
+        type: Number,
+        min: 0,
+        required: true,
     },
     category: {
         type: String,

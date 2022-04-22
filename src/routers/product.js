@@ -1,33 +1,8 @@
 module.exports = function(app){
     const Product = require('../dbModels/product')
     const { adminAuth }  = require('../auth/auth')
-    const multer = require('multer')
 
-    const storage = multer.diskStorage({
-        destination: function (req, file, cb){
-            cb(null, './uploads')
-        },
-        filename: function(req, file, cb){
-            cb(null, new Date().getTime() + '-' + file.originalname)
-        }
-      })
-
-      const fileFilter = (req, file, cb) => {
-        // reject a file
-        if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-          cb(null, true)
-        } else {
-          cb(null, false)
-        }
-      }
-
-      const upload = multer({
-        storage: storage,
-        limits: {
-          fileSize: 1024 * 1024 * 5
-        },
-        fileFilter: fileFilter
-      })
+    const {cloudinary} = require('../cloudinary/cloudinary')
     
     //Get all category products |  body: json {category} return (category(_id, name, number, fields))
     app.get('/products', async (req, res) => {
@@ -45,14 +20,16 @@ module.exports = function(app){
     })
 
     //Create product
-    app.post('/products', adminAuth, upload.single('productImage'), async (req, res) => {
+    app.post('/products', adminAuth, async (req, res) => {
         try {
+            const uploadedResponse = await cloudinary.uploader.upload(req.body.data,{upload_preset: 'ml_default',})
             const product = new Product({
                 name: req.body.name,
+                price: req.body.price,
                 category: req.body.category,
-                number: JSON.parse(req.body.number),
-                parameters: req.body.parameters ? JSON.parse(req.body.parameters) : undefined,
-                productImage: req.file.path
+                number: req.body.number,
+                parameters: req.body.parameters,
+                productImage: uploadedResponse.secure_url
             })
             await product.save()
             res.status(201).send(product)

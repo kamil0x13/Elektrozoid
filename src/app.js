@@ -7,10 +7,11 @@ var bodyParser = require('body-parser')
 const app = express()
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '50mb'}));
+
 //Routers
 require('./routers/user')(app)
 require('./routers/admin')(app)
@@ -43,9 +44,5 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next()
 })
-
-
-app.use(express.json)
-
 
 module.exports = app
