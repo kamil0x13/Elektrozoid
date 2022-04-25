@@ -19,6 +19,22 @@ module.exports = function(app){
         }
     })
 
+
+        //Get all category products |  body: json {category} return (category(_id, name, number, fields))
+        app.post('/productsGet', async (req, res) => {
+            try {
+                let products = null;
+                if(req.body.category){
+                    products = await Product.findByCategory(req.body.category)
+                }else{
+                    products = await Product.find({})
+                }
+                res.send(products)
+            } catch (e) {
+                res.status(500).send()
+            }
+        })
+
     //Create product
     app.post('/products', adminAuth, async (req, res) => {
         try {
